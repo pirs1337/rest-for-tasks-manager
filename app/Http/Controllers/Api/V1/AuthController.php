@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Requests\Auth\AuthRequest;
-use App\Http\Requests\Auth\RegisterRequest;
+use App\Http\Requests\Api\V1\Auth\AuthRequest;
+use App\Http\Requests\Api\V1\Auth\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;

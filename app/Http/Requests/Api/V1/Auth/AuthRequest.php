@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\Api\V1\Auth;
 
-use App\Http\Requests\ApiRequest;
+use App\Http\Requests\Api\V1\ApiRequest;
 
 class AuthRequest extends ApiRequest
 {

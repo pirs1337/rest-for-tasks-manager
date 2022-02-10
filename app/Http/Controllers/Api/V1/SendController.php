@@ -33,4 +33,14 @@ class SendController extends Controller
 
         return response()->json($response, $status);
     }
+
+    public function sendAccessDenied(){
+        $response = [
+            'error' => [
+                'status' => false,
+                'msg' => 'Access denied'
+            ]
+        ];
+        return response()->json($response, 403);
+    }
 }

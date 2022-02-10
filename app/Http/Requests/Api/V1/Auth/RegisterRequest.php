@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\Api\V1\Auth;
 
-use App\Http\Requests\ApiRequest;
+use App\Http\Requests\Api\V1\ApiRequest;
 
 class RegisterRequest extends ApiRequest
 {
-
-    protected $forceJsonResponse = true;
-
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -18,7 +15,6 @@ class RegisterRequest extends ApiRequest
     {
         return true;
     }
-
 
     /**
      * Get the validation rules that apply to the request.
