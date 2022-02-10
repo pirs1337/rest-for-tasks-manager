@@ -118,6 +118,6 @@ class TaskController extends SendController
     }
 
     private function notFound(){
-        return $this->sendError(['msg' => 'Task not found']);
+        return $this->sendError(['msg' => 'Task not found'], 404);
     }
 }
