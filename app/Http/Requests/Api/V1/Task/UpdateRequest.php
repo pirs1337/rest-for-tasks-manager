@@ -26,7 +26,7 @@ class UpdateRequest extends StoreRequest
         return [
             'title' => ['required', 'max:255', 'min:1', 'string'],
             'body' => ['required', 'min:1', 'string'],
-            'status' => ['required', 'max:255', 'in:active,deferred,completed']
+            'status' => ['required', 'max:255', 'in:Активный,Отложенный,Завершенный']
         ];
     }
 }

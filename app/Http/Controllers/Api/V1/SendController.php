@@ -21,9 +21,7 @@ class SendController extends Controller
 
     public function sendError($data, $status = 422){
         $response = [
-            'error' => [
-                'status' => false
-            ]
+            'status' => false,
             
         ];
 
@@ -36,8 +34,8 @@ class SendController extends Controller
 
     public function sendAccessDenied(){
         $response = [
+            'status' => false,
             'error' => [
-                'status' => false,
                 'msg' => 'Access denied'
             ]
         ];

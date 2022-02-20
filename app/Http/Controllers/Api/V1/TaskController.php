@@ -16,6 +16,13 @@ class TaskController extends SendController
         $this->middleware('auth:api');
     }
 
+    private const TASK = [
+        'store' => 'Task created',
+        'update' => 'Task updated',
+        'destroy' => 'Task deleted',
+        'not_found' => 'Task not found'
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -39,7 +46,7 @@ class TaskController extends SendController
         $validated['user_id'] = Auth::id();
 
         $task = Task::create($validated);
-        return $this->sendSuccess(['data' => new TaskResource($task)], 201);
+        return $this->sendSuccess(['msg' => self::TASK['store'], 'data' => new TaskResource($task)], 201);
     }
 
     /**
@@ -83,7 +90,7 @@ class TaskController extends SendController
             if ($task->user_id == Auth::id()) {
                 
                 $task->update($validated);
-                return $this->sendSuccess(['msg' => 'Task was updated', 'data'=> new TaskResource($task)]);
+                return $this->sendSuccess(['msg' => self::TASK['update'], 'data'=> new TaskResource($task)]);
             }
 
             return $this->sendAccessDenied();
@@ -107,7 +114,7 @@ class TaskController extends SendController
             if ($task->user_id == Auth::id()) {
 
                 $task->delete();
-                return $this->sendSuccess(['msg' => 'Task was deleted']);
+                return $this->sendSuccess(['msg' => self::TASK['destroy']]);
             }
 
             return $this->sendAccessDenied();
@@ -118,6 +125,6 @@ class TaskController extends SendController
     }
 
     private function notFound(){
-        return $this->sendError(['msg' => 'Task not found'], 404);
+        return $this->sendError(['msg' => self::TASK['not_found']], 404);
     }
 }

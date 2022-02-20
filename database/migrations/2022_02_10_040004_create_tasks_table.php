@@ -18,7 +18,7 @@ class CreateTasksTable extends Migration
             $table->foreignId('user_id');
             $table->string('title');
             $table->text('body');
-            $table->string('status')->default('active');
+            $table->string('status')->default('Активный');
             $table->timestamps();
         });
     }
