@@ -7,6 +7,7 @@ use App\Http\Requests\Api\V1\Task\UpdateRequest;
 use App\Http\Resources\Api\V1\TaskResource;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class TaskController extends SendController
 {
@@ -28,9 +29,16 @@ class TaskController extends SendController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::where('user_id', Auth::id())->get();
+        $status = $request->query('status'); 
+
+        if ($status) {
+            $tasks = Task::where('user_id', Auth::id())->where('status', $status)->get();
+        } else {
+            $tasks = Task::where('user_id', Auth::id())->get();
+        }
+
         return $this->sendSuccess(['data' => TaskResource::collection($tasks)]);
     }
 
