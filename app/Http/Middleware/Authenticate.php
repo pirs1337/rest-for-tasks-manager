@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Middleware;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
@@ -17,5 +19,14 @@ class Authenticate extends Middleware
         if (! $request->expectsJson()) {
             return route('login');
         }
+    }
+
+    protected function unauthenticated($request, array $guards)
+    {
+        $response = new Controller;
+
+        throw new HttpResponseException(
+            $response->sendUnauthorized()
+        );
     }
 }
