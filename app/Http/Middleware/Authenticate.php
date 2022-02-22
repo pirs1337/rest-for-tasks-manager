@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Middleware;
+
+use App\Http\Controllers\Api\V1\SendController;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use App\Http\Controllers\Controller;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 
@@ -23,10 +24,10 @@ class Authenticate extends Middleware
 
     protected function unauthenticated($request, array $guards)
     {
-        $response = new Controller;
+        $response = new SendController;
 
         throw new HttpResponseException(
-            $response->sendUnauthorized()
+            $response->sendError(['msg' => 'Unauthorized'], 401)
         );
     }
 }
